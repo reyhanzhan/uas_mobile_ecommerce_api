@@ -1,65 +1,59 @@
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatelessWidget {
+  final List<Map<String, String>> profiles = [
+    {
+      'profileImageUrl': 'assets/reyhan.jpeg',
+      'name': 'Reyhan',
+    },
+    {
+      'profileImageUrl': 'assets/rosi.jpeg',
+      'name': 'Roszi',
+    },
+    {
+      'profileImageUrl': 'assets/wulan.jpeg',
+      'name': 'Wulan',
+    },
+    {
+      'profileImageUrl': 'assets/andi.jpeg',
+      'name': 'Andi',
+    },
+    {
+      'profileImageUrl': 'assets/iqbal.jpeg',
+      'name': 'Iqbal',
+    },
+  ];
+
   @override
   Widget build(BuildContext context) {
-    // Informasi pengguna dapat diperoleh dari backend atau penyimpanan lokal.
-    // Untuk contoh ini, kita menggunakan data statis.
-    String profileImageUrl =
-        'assets/profile_image.png'; // Ganti dengan path gambar lokal
-    String name = 'TIF PAGI';
-    String email = 'TIFPAGI@gmail.com';
-    String phone = '+1234567890';
-
     return Scaffold(
       appBar: AppBar(
-        title: Text('Profile'),
+        title: Text('Profiles'),
       ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              CircleAvatar(
-                radius: 100, // Ukuran avatar lebih besar
-                backgroundImage: AssetImage(profileImageUrl),
-              ),
-              SizedBox(height: 30),
-              Text(
-                name,
-                style: TextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
+      body: ListView.builder(
+        itemCount: profiles.length,
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              children: [
+                CircleAvatar(
+                  radius: 100,
+                  backgroundImage: AssetImage(profiles[index]['profileImageUrl']!),
                 ),
-              ),
-              SizedBox(height: 10),
-              Text(
-                email,
-                style: TextStyle(
-                  fontSize: 18,
-                  color: Colors.grey[700],
+                SizedBox(height: 30),
+                Text(
+                  profiles[index]['name']!,
+                  style: TextStyle(
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
-              ),
-              SizedBox(height: 5),
-              Text(
-                phone,
-                style: TextStyle(
-                  fontSize: 18,
-                  color: Colors.grey[700],
-                ),
-              ),
-              // SizedBox(height: 30),
-              // ElevatedButton(
-              //   onPressed: () {
-              //     // Tambahkan logika untuk mengedit profil di sini.
-              //   },
-              //   child: Text('Edit Profile'),
-              // ),
-            ],
-          ),
-        ),
+                Divider(thickness: 2),
+              ],
+            ),
+          );
+        },
       ),
     );
   }
