@@ -42,7 +42,7 @@ class _ProductPageState extends State<ProductPage> {
 
   Future<List<Product>> _fetchProducts() async {
     final response = await http.get(
-      Uri.parse('http://192.168.56.1:8000/api/products'),
+      Uri.parse('https://mobileappuaskelaspagi10.000webhostapp.com/api/products'),
     );
 
     if (response.statusCode == 200) {
